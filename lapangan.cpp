@@ -1,4 +1,4 @@
-#include <iostream>
+// Africa Nurhanrafif 103012400150
 #include <cstring>
 #include "lapangan.h"
 using namespace std;
