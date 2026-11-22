@@ -1,3 +1,4 @@
+// Africa Nurhanrafif 103012400150
 #include <iostream>
 #include <cstring>
 #include "pelanggan.h"
