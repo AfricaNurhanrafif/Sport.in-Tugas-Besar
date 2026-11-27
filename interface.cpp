@@ -36,31 +36,31 @@ void jalankanMenu() {
 
         switch (pilihan) {
             case 1:
-                cout << "Modul pelanggan: lengkapi operasi tambah/tampil/ubah/hapus.\n";
+                cout << "Modul pelanggan: operasi tambah/tampil/ubah/hapus.\n";
                 break;
             case 2:
-                cout << "Modul lapangan: lengkapi operasi tambah/tampil/ubah/hapus.\n";
+                cout << "Modul lapangan: operasi tambah/tampil/ubah/hapus.\n";
                 break;
             case 3:
-                cout << "Modul reservasi: lengkapi pembuatan dan pengelolaan reservasi.\n";
+                cout << "Modul reservasi: pembuatan dan pengelolaan reservasi.\n";
                 break;
             case 4:
                 cout << "Modul pembayaran: pilih reservasi, catat pembayaran ke BST, lalu ubah status.\n";
                 break;
             case 5:
-                cout << "TODO: hitung total pengeluaran reservasi per pelanggan.\n";
+                cout << "belom: hitung total pengeluaran reservasi per pelanggan.\n";
                 break;
             case 6:
-                cout << "TODO: hitung total pendapatan dari pembayaran berhasil.\n";
+                cout << "belom: hitung total pendapatan dari pembayaran berhasil.\n";
                 break;
             case 7:
-                cout << "TODO: tampilkan lapangan dengan jumlah reservasi terbanyak.\n";
+                cout << "belom: tampilkan lapangan dengan jumlah reservasi terbanyak.\n";
                 break;
             case 8:
-                cout << "TODO: tampilkan jadwal lapangan yang belum terisi.\n";
+                cout << "belom: tampilkan jadwal lapangan yang belum terisi.\n";
                 break;
             case 9:
-                cout << "TODO: tampilkan riwayat reservasi berdasarkan periode.\n";
+                cout << "belom: tampilkan riwayat reservasi berdasarkan periode.\n";
                 break;
             case 0:
                 cout << "Program selesai.\n";
