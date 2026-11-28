@@ -6,8 +6,7 @@
 #include "pembayaran.h"
 using namespace std;
 
-// Menyalin string ke array tetap tanpa melewati batas
-static void salin(char tujuan[], const char sumber[], int ukuran) {
+static void salin(char tujuan[], const char sumber[], int ukuran) { //ganti array nya, gausa pake array
     strncpy(tujuan, sumber, ukuran - 1);
     tujuan[ukuran - 1] = '\0';
 }
@@ -35,7 +34,7 @@ bool insertPembayaran(NodePembayaran* &root, Pembayaran data) {
         return insertPembayaran(root->left, data);
     if (data.idPembayaran > root->info.idPembayaran)
         return insertPembayaran(root->right, data);
-    return false;   // ID duplikat tidak dimasukkan
+    return false;
 }
 
 void tampilPembayaranInOrder(NodePembayaran* root) {
@@ -51,8 +50,6 @@ void tampilPembayaranInOrder(NodePembayaran* root) {
     }
 }
 
-// ID acak 6 digit (100000 - 999999) yang belum ada di BST.
-// rand() digabung dua kali supaya aman di compiler dengan RAND_MAX kecil (32767).
 int generateIdPembayaran(NodePembayaran* root) {
     static bool sudahSeed = false;
     if (!sudahSeed) {
@@ -80,7 +77,6 @@ bool prosesPembayaran(ListPelanggan LP, NodePembayaran* &root, int idReservasi,
     NodeRelasi* r = cariReservasi(LP, idReservasi, pemilik);
     if (r == NULL) return false;
 
-    // hanya reservasi berstatus "Menunggu" yang boleh dibayar
     if (strcmp(r->info.statusReservasi, RESERVASI_MENUNGGU) != 0) return false;
     if (cariPembayaranByReservasi(root, idReservasi) != NULL) return false;
 
@@ -94,7 +90,6 @@ bool prosesPembayaran(ListPelanggan LP, NodePembayaran* &root, int idReservasi,
 
     if (!insertPembayaran(root, b)) return false;
 
-    // transaksi berhasil -> perbarui status reservasi
     strcpy(r->info.statusReservasi, RESERVASI_DIBAYAR);
     return true;
 }
@@ -112,7 +107,6 @@ double hitungPengeluaranPelanggan(NodePelanggan* pelanggan, NodePembayaran* root
     return total;
 }
 
-// NULL jika belum ada pelanggan yang punya pembayaran berhasil
 NodePelanggan* pelangganPengeluaranTertinggi(ListPelanggan LP, NodePembayaran* root) {
     NodePelanggan* terbaik = NULL;
     double maks = 0;
