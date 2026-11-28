@@ -25,12 +25,11 @@ bool tambahReservasi(ListPelanggan LP, NodePelanggan* pelanggan,
                      NodeLapangan* lapangan, Reservasi data) {
     if (pelanggan == NULL || lapangan == NULL) return false;
 
-    // validasi jadwal: jam 0-23, durasi minimal 1 jam, tidak lewat tengah malam
     if (data.jamMulai < 0 || data.jamMulai > 23) return false;
     if (data.durasiJam < 1 || data.jamMulai + data.durasiJam > 24) return false;
 
     NodePelanggan* pemilik;
-    if (cariReservasi(LP, data.idReservasi, pemilik) != NULL) return false; // id unik
+    if (cariReservasi(LP, data.idReservasi, pemilik) != NULL) return false;
     if (jadwalBentrok(LP, lapangan->info.kodeLapangan, data.tanggalReservasi,
                       data.jamMulai, data.durasiJam)) return false;
 
@@ -124,8 +123,6 @@ bool lapanganDipakai(ListPelanggan LP, const char kodeLapangan[]) {
     return false;
 }
 
-// Bentrok jika rentang [mulai, selesai) saling tumpang tindih pada
-// lapangan dan tanggal yang sama. Reservasi yang dibatalkan diabaikan.
 bool jadwalBentrok(ListPelanggan LP, const char kodeLapangan[],
                    const char tanggal[], int jamMulai, int durasiJam) {
     int selesaiBaru = jamMulai + durasiJam;
@@ -147,7 +144,6 @@ bool jadwalBentrok(ListPelanggan LP, const char kodeLapangan[],
     return false;
 }
 
-// Reservasi yang dibatalkan tidak dihitung
 int hitungReservasiLapangan(ListPelanggan LP, const char kodeLapangan[]) {
     int jumlah = 0;
     NodePelanggan* pl = LP.first;
@@ -165,7 +161,6 @@ int hitungReservasiLapangan(ListPelanggan LP, const char kodeLapangan[]) {
     return jumlah;
 }
 
-// NULL jika belum ada lapangan yang direservasi. Jika seri, yang pertama di list.
 NodeLapangan* lapanganReservasiTerbanyak(ListPelanggan LP, ListLapangan LL) {
     NodeLapangan* terbaik = NULL;
     int maks = 0;
@@ -188,7 +183,7 @@ void tampilJadwalTersedia(ListPelanggan LP, NodeLapangan* lapangan,
          << " pada " << tanggal << ":\n";
 
     bool ada = false;
-    int mulai = -1;   // awal rentang jam kosong yang sedang dibaca
+    int mulai = -1;
     for (int jam = jamBuka; jam <= jamTutup; jam++) {
         bool kosong = (jam < jamTutup) &&
                       !jadwalBentrok(LP, lapangan->info.kodeLapangan, tanggal, jam, 1);
@@ -203,7 +198,6 @@ void tampilJadwalTersedia(ListPelanggan LP, NodeLapangan* lapangan,
     if (!ada) cout << "  (tidak ada jadwal kosong)\n";
 }
 
-// Tanggal berformat YYYY-MM-DD, jadi bisa dibandingkan dengan strcmp
 void tampilRiwayatPelanggan(NodePelanggan* pelanggan,
                             const char tanggalAwal[], const char tanggalAkhir[]) {
     if (pelanggan == NULL) return;
