@@ -18,7 +18,7 @@ NodeLapangan* cariLapangan(ListLapangan L, const char kodeLapangan[]) {
 }
 
 bool tambahLapangan(ListLapangan &L, Lapangan data) {
-    if (cariLapangan(L, data.kodeLapangan) != NULL) return false; // kode harus unik
+    if (cariLapangan(L, data.kodeLapangan) != NULL) return false;
 
     NodeLapangan* p = new NodeLapangan;
     p->info = data;
@@ -38,7 +38,6 @@ bool ubahLapangan(ListLapangan &L, const char kodeLapangan[], Lapangan dataBaru)
     NodeLapangan* p = cariLapangan(L, kodeLapangan);
     if (p == NULL) return false;
 
-    // kode tidak diubah, hanya data lainnya
     strcpy(p->info.namaLapangan, dataBaru.namaLapangan);
     strcpy(p->info.jenisOlahraga, dataBaru.jenisOlahraga);
     p->info.hargaPerJam = dataBaru.hargaPerJam;
