@@ -4,9 +4,8 @@
 
 #include <cstddef>
 
-// ===== CHILD: Lapangan =====
 struct Lapangan {
-    char kodeLapangan[20];
+    char kodeLapangan[20]; //JGN PAKE ARRAY
     char namaLapangan[100];
     char jenisOlahraga[50];
     double hargaPerJam;
