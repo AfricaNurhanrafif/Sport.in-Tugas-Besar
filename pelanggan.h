@@ -4,11 +4,10 @@
 
 #include <cstddef>
 
-struct NodeRelasi;              // didefinisikan di reservasi.h
+struct NodeRelasi;
 
-// ===== PARENT: Pelanggan =====
 struct Pelanggan {
-    int idPelanggan;            // unik
+    int idPelanggan;
     char nama[100];
     char nomorTelepon[25];
     char email[100];
@@ -16,7 +15,7 @@ struct Pelanggan {
 
 struct NodePelanggan {
     Pelanggan info;
-    NodeRelasi* firstRelasi;    // list reservasi milik pelanggan ini
+    NodeRelasi* firstRelasi;
     NodePelanggan* next;
 };
 
@@ -24,17 +23,13 @@ struct ListPelanggan {
     NodePelanggan* first;
 };
 
-// ----- Primitif -----
 void buatListPelanggan(ListPelanggan &L);
 NodePelanggan* cariPelanggan(ListPelanggan L, int idPelanggan);
 
-// Mengembalikan false jika id sudah dipakai. firstRelasi diisi NULL.
 bool tambahPelanggan(ListPelanggan &L, Pelanggan data);
 
-// Mengubah data selain id. false jika id tidak ditemukan
 bool ubahPelanggan(ListPelanggan &L, int idPelanggan, Pelanggan dataBaru);
 
-// Menghapus pelanggan beserta SELURUH list reservasinya
 bool hapusPelanggan(ListPelanggan &L, int idPelanggan);
 
 void tampilPelanggan(ListPelanggan L);
