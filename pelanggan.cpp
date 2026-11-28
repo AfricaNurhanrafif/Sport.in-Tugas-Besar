@@ -2,7 +2,7 @@
 #include <iostream>
 #include <cstring>
 #include "pelanggan.h"
-#include "reservasi.h"   // butuh NodeRelasi lengkap untuk hapusPelanggan
+#include "reservasi.h"   // NodeRelasi lengkapin dulu buat hapusPelanggan
 using namespace std;
 
 void buatListPelanggan(ListPelanggan &L) {
@@ -19,7 +19,7 @@ NodePelanggan* cariPelanggan(ListPelanggan L, int idPelanggan) {
 }
 
 bool tambahPelanggan(ListPelanggan &L, Pelanggan data) {
-    if (cariPelanggan(L, data.idPelanggan) != NULL) return false; // id harus unik
+    if (cariPelanggan(L, data.idPelanggan) != NULL) return false;
 
     NodePelanggan* p = new NodePelanggan;
     p->info = data;
@@ -40,7 +40,6 @@ bool ubahPelanggan(ListPelanggan &L, int idPelanggan, Pelanggan dataBaru) {
     NodePelanggan* p = cariPelanggan(L, idPelanggan);
     if (p == NULL) return false;
 
-    // id tidak diubah, hanya data lainnya
     strcpy(p->info.nama, dataBaru.nama);
     strcpy(p->info.nomorTelepon, dataBaru.nomorTelepon);
     strcpy(p->info.email, dataBaru.email);
@@ -52,7 +51,6 @@ bool hapusPelanggan(ListPelanggan &L, int idPelanggan) {
     NodePelanggan* p = L.first;
     while (p != NULL) {
         if (p->info.idPelanggan == idPelanggan) {
-            // hapus seluruh reservasi milik pelanggan ini (lapangan TIDAK ikut dihapus)
             NodeRelasi* r = p->firstRelasi;
             while (r != NULL) {
                 NodeRelasi* hapus = r;
